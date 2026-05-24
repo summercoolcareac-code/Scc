@@ -36,12 +36,17 @@ header p{
 .btn{
     display:inline-block;
     margin-top:15px;
+    margin-right:10px;
     padding:12px 20px;
     background:#25D366;
     color:#fff;
     text-decoration:none;
     border-radius:5px;
     font-weight:bold;
+}
+
+.call-btn{
+    background:#0066cc;
 }
 
 section{
@@ -130,8 +135,15 @@ footer{
 
     <p class="phone">📞 7358388293</p>
 
-    <a class="btn" href="https://wa.me/917358388293" target="_blank">
+    <a class="btn"
+    href="https://wa.me/917358388293?text=Hello%20Summer%20Cool%20Care"
+    target="_blank">
         WhatsApp Now
+    </a>
+
+    <a class="btn call-btn"
+    href="tel:7358388293">
+        Call Now
     </a>
 </header>
 
@@ -189,13 +201,13 @@ Enquiry Form
 
 <div class="contact-box">
 
-<form action="#" method="post">
+<form onsubmit="sendToWhatsApp(event)">
 
-<input type="text" placeholder="Your Name" required>
+<input type="text" id="name" placeholder="Your Name" required>
 
-<input type="tel" placeholder="Phone Number" required>
+<input type="tel" id="phone" placeholder="Phone Number" required>
 
-<textarea rows="5"
+<textarea id="problem" rows="5"
 placeholder="Describe Your Problem"></textarea>
 
 <button type="submit">
@@ -215,6 +227,27 @@ Send Enquiry
 <p>📞 7358388293</p>
 <p>Tiruchendur, Tamil Nadu</p>
 </footer>
+
+<script>
+function sendToWhatsApp(event){
+    event.preventDefault();
+
+    let name = document.getElementById("name").value;
+    let phone = document.getElementById("phone").value;
+    let problem = document.getElementById("problem").value;
+
+    let message =
+`New Service Enquiry%0A
+Name: ${name}%0A
+Phone: ${phone}%0A
+Problem: ${problem}`;
+
+    let whatsappURL =
+`https://wa.me/917358388293?text=${message}`;
+
+    window.open(whatsappURL, "_blank");
+}
+</script>
 
 </body>
 </html>
